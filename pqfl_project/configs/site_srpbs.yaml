@@ -1,0 +1,29 @@
+# @package _global_
+
+# Site 4: SRPBS-1600 dataset configuration (Japan)
+# Access: BICR ATR Japan (application form required, free)
+# URL: https://bicr-resource.atr.jp/srpbsfc (precomputed FC, 175MB)
+# URL: https://bicr-resource.atr.jp/srpbs1600 (raw fMRI, 89.8 GB)
+# NOTE: NOT on OpenNeuro (ds001838 is an unrelated dataset)
+site:
+  name: "SRPBS"
+  id: 4
+  data_path: "${data.base_path}/SRPBS"
+  access: "registration"
+  source_url: "https://bicr-resource.atr.jp/srpbsfc"
+
+dataset:
+  n_sz: 146           # SCZ: 92 (KyotoU) + 35 (UTokyo) + 19 (ShowaU)
+  n_hc: 800           # Approximate HC count across sites
+  n_total: 1627       # Full SRPBS-1600: 12 sites, multiple disorders
+  n_sites: 12
+  scanner: "Various 3T"
+  has_precomputed_fc: true
+  fc_format: "mat"               # SRPBS BICR: .mat files with FC matrices
+  diagnosis_col: "diagnosis"
+  sz_label: "SCZ"                # Or "SZ"
+  hc_label: "HC"                 # Or "Control"
+  subject_info_files: "SUBINFO_*.tsv"  # Per-site subject demographics
+
+parcellation:
+  n_rois: 100

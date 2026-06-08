@@ -1,0 +1,26 @@
+# @package _global_
+
+# Validation Site 1: BSNIP-2 dataset configuration
+# Access: NIMH Data Archive (NDA) - IRB + Data Use Certification required
+# URL: https://nda.nih.gov/edit_collection.html?id=2165
+# NOTE: Controlled access - requires institutional IRB documentation
+site:
+  name: "BSNIP2"
+  id: 5
+  data_path: "${data.base_path}/BSNIP2"
+  access: "nda_controlled"      # NDA Data Use Certification required
+  source_url: "https://nda.nih.gov/edit_collection.html?id=2165"
+  role: "validation"
+
+dataset:
+  n_sz: 150           # Schizophrenia probands
+  n_hc: 223           # Healthy controls
+  n_total: 1206       # Full BSNIP-2 (SZ + SAD + BDP + REL + HC)
+  n_sites: 5
+  scanner: "Mixed 3T"
+  cross_disorder: true           # SZ + SAD + BDP + relatives + HC
+  diagnosis_col: "diagnosis"
+  alt_diagnosis: "biotype"       # B-SNIP Biotypes (B1, B2, B3)
+
+parcellation:
+  n_rois: 100

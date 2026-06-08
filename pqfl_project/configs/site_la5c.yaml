@@ -1,0 +1,30 @@
+# @package _global_
+
+# Site 3: UCLA LA5c/CNP dataset configuration
+# OpenNeuro: ds000030 (VERIFIED)
+# Access: Open (no registration required)
+# Download: aws s3 sync --no-sign-request s3://openneuro/ds000030/ds000030_R1.0.5/uncompressed/ ./data/LA5c/
+site:
+  name: "LA5c"
+  id: 3
+  data_path: "${data.base_path}/LA5c"
+  access: "open"
+  openneuro_id: "ds000030"
+  source_url: "https://openneuro.org/datasets/ds000030"
+
+dataset:
+  n_sz: 50       # SCHZ diagnosis in participants.tsv
+  n_hc: 127      # CONTROL diagnosis (130 total CONTROL, 127 with rest fMRI)
+  n_total: 272   # Includes BIPOLAR (49) + ADHD (43) - excluded from binary SZ/HC
+  n_sites: 1
+  scanner: "Siemens TrioTim 3T"
+  bids_format: true
+  diagnosis_col: "diagnosis"       # Column in participants.tsv
+  sz_label: "SCHZ"                 # Value in diagnosis column
+  hc_label: "CONTROL"              # Value in diagnosis column
+  task_name: "rest"                # task-rest_bold.nii.gz
+  tr: 2.0
+  n_volumes: 156                   # Per resting-state run
+
+parcellation:
+  n_rois: 100

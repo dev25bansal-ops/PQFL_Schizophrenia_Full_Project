@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.python-version
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Neuroimaging data — DO NOT COMMIT (too large for git, use DVC or external storage)
+pqfl_project/data/
+pqfl_project/nilearn_cache/
+
+# Results, figures, analysis outputs (auto-generated, timestamped)
+pqfl_project/results/
+pqfl_project/figures/
+pqfl_project/analysis_results/
+pqfl_project/cv_results/
+pqfl_project/final_results/
+pqfl_project/sweep_results/
+pqfl_project/experiments/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+venv/
+.venv/
+env/

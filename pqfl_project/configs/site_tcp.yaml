@@ -1,0 +1,32 @@
+# @package _global_
+
+# Validation Site 2: TCP 2025 (Transdiagnostic Connectome Project)
+# OpenNeuro: ds005237 (VERIFIED)
+# Access: Open (no registration required)
+# Download: aws s3 sync --no-sign-request s3://openneuro.org/ds005237 ./data/TCP2025/
+site:
+  name: "TCP2025"
+  id: 6
+  data_path: "${data.base_path}/TCP2025"
+  access: "open"
+  openneuro_id: "ds005237"
+  source_url: "https://openneuro.org/datasets/ds005237"
+  role: "validation"
+
+dataset:
+  n_sz: 40        # Approximate; transdiagnostic - filter by SCID diagnosis
+  n_hc: 93        # Healthy controls
+  n_total: 241    # 148 clinical + 93 HC (mixed diagnoses)
+  n_sites: 2      # Yale University + McLean Hospital
+  scanner: "Siemens 3T Prisma"
+  bids_format: true
+  cross_disorder: true            # SZ + BD + MDD + anxiety disorders
+  diagnosis_col: "Group"          # participants.tsv: patient / healthy control
+  alt_diagnosis_file: "phenotype/demos.tsv"  # Detailed SCID-5 diagnosis
+  task_name: "rest"               # task-rest_run-*_bold.nii.gz
+  tr: 0.8                         # HCP-style multiband (MB=8)
+  n_volumes: 488                  # Per resting-state run
+  n_rest_runs: 6                  # Multiple runs per subject
+
+parcellation:
+  n_rois: 100

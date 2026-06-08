@@ -1,0 +1,26 @@
+# @package _global_
+
+# Site 1: FBIRN Phase III dataset configuration
+# Access: RESTRICTED - Contact PI directly
+# Contact: Dr. Theo G.M. van Erp (tvanerp@hs.uci.edu)
+# Must facilitate interaction with IRB + sign DUA
+# NOTE: Phase II has NO resting-state fMRI (task-based only)
+# NOTE: Phase III has rest fMRI: 176 SZ + 186 HC
+site:
+  name: "FBIRN"
+  id: 1
+  data_path: "${data.base_path}/FBIRN"
+  access: "dua"                  # Requires direct PI contact
+  source_contact: "tvanerp@hs.uci.edu"
+
+dataset:
+  n_sz: 176           # Phase III only (SCID-confirmed)
+  n_hc: 186           # Phase III only
+  n_total: 362        # Phase III total
+  n_sites: 7
+  scanner: "Mixed 3T (GE, Siemens)"
+  bids_format: false
+  phase: "III"                  # Phase II has no resting-state data
+
+parcellation:
+  n_rois: 100

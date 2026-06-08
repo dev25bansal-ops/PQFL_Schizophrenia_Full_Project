@@ -1,0 +1,25 @@
+# @package _global_
+
+# Site 2: MCICShare dataset configuration
+# Access: COINS Data Exchange (DUA required, free but slow approval ~weeks)
+# URL: https://coins.trendscenter.org/ (Study=MCICShare)
+# NOTE: NOT on OpenNeuro
+site:
+  name: "MCIC"
+  id: 2
+  data_path: "${data.base_path}/MCIC"
+  access: "dua"                  # COINS Data Use Agreement required
+  source_url: "https://coins.trendscenter.org/"
+
+dataset:
+  n_sz: 146
+  n_hc: 160
+  n_total: 306       # 3 of 4 sites released (1 withheld for IRB)
+  n_sites: 4
+  scanner: "Mixed 1.5T and 3T"
+  bids_format: false            # Available via SchizConnect in BIDS format
+  diagnosis_col: "diagnosis"
+  scid_verified: true
+
+parcellation:
+  n_rois: 100

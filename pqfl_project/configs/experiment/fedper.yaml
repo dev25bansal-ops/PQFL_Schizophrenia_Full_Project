@@ -1,0 +1,18 @@
+# @package _global_
+# FedPer experiment configuration
+
+defaults:
+  - override /federated: fedper
+
+federated:
+  strategy: "fedper"
+  n_rounds: 50
+  n_local_epochs: 5
+
+model:
+  n_base_layers: 3
+  n_personal_layers: 1
+
+training:
+  learning_rate: 0.001
+  optimizer: "adamw"

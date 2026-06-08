@@ -1,0 +1,29 @@
+# @package _global_
+
+# Site 0: COBRE dataset configuration
+# Access: COINS Data Exchange (free account, ~1 day approval)
+# URL: https://coins.trendscenter.org/ (Study=COBRE)
+# NOTE: All Figshare links are 403 Forbidden (dead since 2025)
+# NOTE: NOT on OpenNeuro
+site:
+  name: "COBRE"
+  id: 0
+  data_path: "${data.base_path}/COBRE"
+  access: "registration"          # COINS account required
+  source_url: "https://coins.trendscenter.org/"
+
+dataset:
+  n_sz: 72
+  n_hc: 74
+  n_total: 146
+  n_sites: 1
+  scanner: "Siemens Trio 3T"
+  bids_format: false              # May come as raw DICOM or NIAK preprocessed
+  diagnosis_col: "Subject Type"   # COBRE phenotypic CSV: Patient / Control
+  alt_phenotype_file: "COBRE_phenotypic_data.csv"
+  task_name: "rest"
+  tr: 2.0
+  n_volumes: 150
+
+parcellation:
+  n_rois: 100

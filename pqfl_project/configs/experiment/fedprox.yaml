@@ -1,0 +1,15 @@
+# @package _global_
+# FedProx experiment configuration
+
+defaults:
+  - override /federated: fedprox
+
+federated:
+  strategy: "fedprox"
+  n_rounds: 50
+  n_local_epochs: 5
+  fedprox_mu: 0.01
+
+model:
+  n_base_layers: 3
+  n_personal_layers: 1
