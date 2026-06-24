@@ -1,0 +1,427 @@
+DATA INVENTORY - 2026-06-18 20:42:49.061218
+Root: F:\PQFL_Schizophrenia_Full_Project
+
+=== TOP-LEVEL ENTRIES ===
+  FILE  Federated_QML_Schizophrenia_Research_Paper.pdf      0.17 MB
+  FILE  Federated_QML_Schizophrenia_Unique_Problem.pdf      0.15 MB
+  FILE  Global_SZ_fMRI_Dataset_Catalog.docx      0.03 MB
+  FILE  Implementation_Research_PQFL_Schizophrenia.pdf      0.11 MB
+  FILE  inventory.py                        0.00 MB
+  FILE  manifest.csv                        1.85 MB
+  FILE  manifest_1781460257391714400.csv      0.00 MB
+  FILE  manifest_1781460404012038800.csv      0.00 MB
+  FILE  manifest_1781460551875329100.csv      0.00 MB
+  FILE  manifest_1781460586642924100.csv      0.00 MB
+  FILE  manifest_1781461333317651400.csv      0.60 MB
+  FILE  manifest_1781472489608968100.csv      2.37 MB
+  DIR   pqfl_project                       34279 files   1194.33 GB
+  FILE  PQFL_Schizophrenia_Report.pdf       0.08 MB
+  FILE  PQFL_Schizophrenia_Results_Report.pdf      0.64 MB
+  FILE  README.md                           0.00 MB
+  FILE  Summer_Interns_LR_Completed.pdf      0.17 MB
+  DIR   venv                               52070 files      1.63 GB
+
+================================================================================
+DATASET: pqfl_project
+================================================================================
+Total files: 34279   Total size: 1194.33 GB
+
+--- File extensions (top 10) ---
+  .gz           8448 files
+  .tsv          6278 files
+  .json         5901 files
+  .csv          4455 files
+  .h5           2776 files
+  .mat          1574 files
+  .npy          1572 files
+  .gii          1536 files
+  .bval         586 files
+  .bvec         582 files
+
+--- Directory tree (depth 3) ---
+  analysis_results
+    analysis_results/20260605_223058
+    analysis_results/20260605_224350
+  configs
+    configs/experiment
+  cv_results
+    cv_results/20260605_201031
+  data
+    data/BrainLat
+      data/BrainLat/EEG data
+      data/BrainLat/MRI data
+    data/COBRE
+      data/COBRE/COBRE
+    data/COBRE Preprocessed (Figshare)
+      data/COBRE Preprocessed (Figshare)/extracted
+    data/Depression
+      data/Depression/.datalad
+      data/Depression/sub-01
+      data/Depression/sub-02
+      data/Depression/sub-03
+      data/Depression/sub-04
+      data/Depression/sub-05
+      data/Depression/sub-06
+      data/Depression/sub-07
+      data/Depression/sub-08
+      data/Depression/sub-09
+      data/Depression/sub-10
+      data/Depression/sub-11
+      data/Depression/sub-12
+      data/Depression/sub-13
+      data/Depression/sub-14
+      data/Depression/sub-15
+      data/Depression/sub-16
+      data/Depression/sub-17
+      data/Depression/sub-18
+      data/Depression/sub-19
+      data/Depression/sub-20
+      data/Depression/sub-21
+      data/Depression/sub-22
+      data/Depression/sub-23
+      data/Depression/sub-24
+      data/Depression/sub-25
+      data/Depression/sub-26
+      data/Depression/sub-27
+      data/Depression/sub-28
+      data/Depression/sub-29
+      data/Depression/sub-30
+      data/Depression/sub-31
+      data/Depression/sub-32
+      data/Depression/sub-33
+      data/Depression/sub-34
+      data/Depression/sub-35
+      data/Depression/sub-36
+      data/Depression/sub-37
+      data/Depression/sub-38
+      data/Depression/sub-39
+      data/Depression/sub-40
+      data/Depression/sub-41
+      data/Depression/sub-42
+      data/Depression/sub-43
+      data/Depression/sub-44
+      data/Depression/sub-45
+      data/Depression/sub-46
+      data/Depression/sub-47
+      data/Depression/sub-48
+      data/Depression/sub-49
+      data/Depression/sub-50
+      data/Depression/sub-51
+      data/Depression/sub-52
+      data/Depression/sub-53
+      data/Depression/sub-54
+      data/Depression/sub-55
+      data/Depression/sub-56
+      data/Depression/sub-57
+      data/Depression/sub-58
+      data/Depression/sub-59
+      data/Depression/sub-60
+      data/Depression/sub-61
+      data/Depression/sub-62
+      data/Depression/sub-63
+      data/Depression/sub-64
+
+--- CSV/TSV/JSON/TXT/YAML files (first 20, with first 3 lines) ---
+  >>> pqfl_project\preprocess_new_datasets.log  (13.9 KB)
+    2026-06-18 20:15:20,757 - __main__ - INFO - ======================================================================
+    2026-06-18 20:15:20,757 - __main__ - INFO - PQFL Phase 2: Preprocessing 5 new datasets
+    2026-06-18 20:15:20,757 - __main__ - INFO - ======================================================================
+
+  >>> pqfl_project\worklog.md  (6.9 KB)
+    # PQFL Schizophrenia — Worklog
+    
+    ---
+
+  >>> pqfl_project\configs\default.yaml  (2.2 KB)
+    # PQFL Default Configuration
+    # Distributed Brain Connectivity Analysis for Schizophrenia
+    
+
+  >>> pqfl_project\configs\site_bsnip.yaml  (0.9 KB)
+    # @package _global_
+    
+    # Validation Site 1: BSNIP-2 dataset configuration
+
+  >>> pqfl_project\configs\site_cobre.yaml  (0.8 KB)
+    # @package _global_
+    
+    # Site 0: COBRE dataset configuration
+
+  >>> pqfl_project\configs\site_fbirn.yaml  (0.8 KB)
+    # @package _global_
+    
+    # Site 1: FBIRN Phase III dataset configuration
+
+  >>> pqfl_project\configs\site_la5c.yaml  (1.0 KB)
+    # @package _global_
+    
+    # Site 3: UCLA LA5c/CNP dataset configuration
+
+  >>> pqfl_project\configs\site_mcic.yaml  (0.7 KB)
+    # @package _global_
+    
+    # Site 2: MCICShare dataset configuration
+
+  >>> pqfl_project\configs\site_srpbs.yaml  (1.0 KB)
+    # @package _global_
+    
+    # Site 4: SRPBS-1600 dataset configuration (Japan)
+
+  >>> pqfl_project\configs\site_tcp.yaml  (1.2 KB)
+    # @package _global_
+    
+    # Validation Site 2: TCP 2025 (Transdiagnostic Connectome Project)
+
+  >>> pqfl_project\pqfl.egg-info\dependency_links.txt  (0.0 KB)
+    
+
+  >>> pqfl_project\pqfl.egg-info\requires.txt  (0.4 KB)
+    pennylane>=0.35.0
+    pennylane-lightning
+    torch>=2.1.0
+
+  >>> pqfl_project\pqfl.egg-info\SOURCES.txt  (1.0 KB)
+    pyproject.toml
+    pqfl/__init__.py
+    pqfl.egg-info/PKG-INFO
+
+  >>> pqfl_project\pqfl.egg-info\top_level.txt  (0.0 KB)
+    pqfl
+
+  >>> pqfl_project\sweep_results\20260605_195653\sweep_results.json  (8.9 KB)
+    {
+      "baselines": {
+        "TangentSVM_CV": {
+
+  >>> pqfl_project\results\20260605_182450\results.json  (9.0 KB)
+    {
+      "config": {
+        "n_sites": 1,
+
+  >>> pqfl_project\results\20260605_185724\results.json  (11.3 KB)
+    {
+      "config": {
+        "n_sites": 1,
+
+  >>> pqfl_project\results\20260605_191319\results.json  (8.8 KB)
+    {
+      "config": {
+        "n_sites": 1,
+
+  >>> pqfl_project\final_results\20260605_215735\final_results.json  (25.3 KB)
+    {
+      "config": {
+        "n_qubits": 6,
+
+  >>> pqfl_project\final_results\20260608_134246\final_results.json  (25.3 KB)
+    {
+      "config": {
+        "n_qubits": 6,
+
+--- Sample sub-* folder (first one found) ---
+  pqfl_project\data\Transdiagnostic\sub-NDARINVZY305TZ5
+    ./anat/sub-NDARINVZY305TZ5_run-01_T1w.json   0.0 MB
+    ./anat/sub-NDARINVZY305TZ5_run-01_T1w.nii.gz   5.9 MB
+    ./anat/sub-NDARINVZY305TZ5_run-01_T2w.json   0.0 MB
+    ./anat/sub-NDARINVZY305TZ5_run-01_T2w.nii.gz   5.2 MB
+    ./fmap/sub-NDARINVZY305TZ5_dir-ap_epi.json   0.0 MB
+    ./fmap/sub-NDARINVZY305TZ5_dir-ap_epi.nii.gz   1.3 MB
+    ./fmap/sub-NDARINVZY305TZ5_dir-pa_epi.json   0.0 MB
+    ./fmap/sub-NDARINVZY305TZ5_dir-pa_epi.nii.gz   1.3 MB
+    ./func/sub-NDARINVZY305TZ5_task-restAP_run-01_bold.json   0.0 MB
+    ./func/sub-NDARINVZY305TZ5_task-restAP_run-01_bold.nii.gz   630.2 MB
+    ./func/sub-NDARINVZY305TZ5_task-restAP_run-02_bold.json   0.0 MB
+    ./func/sub-NDARINVZY305TZ5_task-restAP_run-02_bold.nii.gz   633.1 MB
+    ./func/sub-NDARINVZY305TZ5_task-restPA_run-01_bold.json   0.0 MB
+    ./func/sub-NDARINVZY305TZ5_task-restPA_run-01_bold.nii.gz   624.1 MB
+    ./func/sub-NDARINVZY305TZ5_task-restPA_run-02_bold.json   0.0 MB
+    ./func/sub-NDARINVZY305TZ5_task-restPA_run-02_bold.nii.gz   625.9 MB
+    ./func/sub-NDARINVZY305TZ5_task-stroopAP_run-01_bold.json   0.0 MB
+    ./func/sub-NDARINVZY305TZ5_task-stroopAP_run-01_bold.nii.gz   659.7 MB
+    ./func/sub-NDARINVZY305TZ5_task-stroopAP_run-01_events.json   0.0 MB
+    ./func/sub-NDARINVZY305TZ5_task-stroopAP_run-01_events.tsv   0.0 MB
+
+================================================================================
+DATASET: venv
+================================================================================
+Total files: 52070   Total size: 1.63 GB
+
+--- File extensions (top 10) ---
+  .py           17719 files
+  .pyc          17719 files
+  .h            9884 files
+  (no ext)      2010 files
+  .pyi          694 files
+  .txt          435 files
+  .pyd          412 files
+  .hpp          251 files
+  .js           232 files
+  .cpp          229 files
+
+--- Directory tree (depth 3) ---
+  Include
+    Include/site
+      Include/site/python3.14
+  Lib
+    Lib/site-packages
+      Lib/site-packages/__pycache__
+      Lib/site-packages/_distutils_hack
+      Lib/site-packages/_yaml
+      Lib/site-packages/adodbapi
+      Lib/site-packages/aiohappyeyeballs
+      Lib/site-packages/aiohappyeyeballs-2.6.2.dist-info
+      Lib/site-packages/aiohttp
+      Lib/site-packages/aiohttp-3.14.1.dist-info
+      Lib/site-packages/aiosignal
+      Lib/site-packages/aiosignal-1.4.0.dist-info
+      Lib/site-packages/alembic
+      Lib/site-packages/alembic-1.18.4.dist-info
+      Lib/site-packages/annotated_doc
+      Lib/site-packages/annotated_doc-0.0.4.dist-info
+      Lib/site-packages/annotated_types
+      Lib/site-packages/annotated_types-0.7.0.dist-info
+      Lib/site-packages/antlr4
+      Lib/site-packages/antlr4_python3_runtime-4.9.3.dist-info
+      Lib/site-packages/anyio
+      Lib/site-packages/anyio-4.14.0.dist-info
+      Lib/site-packages/appdirs-1.4.4.dist-info
+      Lib/site-packages/attr
+      Lib/site-packages/attrs
+      Lib/site-packages/attrs-26.1.0.dist-info
+      Lib/site-packages/autograd
+      Lib/site-packages/autograd-1.8.0.dist-info
+      Lib/site-packages/autoray
+      Lib/site-packages/autoray-0.8.4.dist-info
+      Lib/site-packages/blinker
+      Lib/site-packages/blinker-1.9.0.dist-info
+      Lib/site-packages/cachetools
+      Lib/site-packages/cachetools-7.1.4.dist-info
+      Lib/site-packages/certifi
+      Lib/site-packages/certifi-2026.6.17.dist-info
+      Lib/site-packages/cffi
+      Lib/site-packages/cffi-2.0.0.dist-info
+      Lib/site-packages/charset_normalizer
+      Lib/site-packages/charset_normalizer-3.4.7.dist-info
+      Lib/site-packages/click
+      Lib/site-packages/click-8.4.1.dist-info
+      Lib/site-packages/cloudpickle
+      Lib/site-packages/cloudpickle-3.1.2.dist-info
+      Lib/site-packages/colorama
+      Lib/site-packages/colorama-0.4.6.dist-info
+      Lib/site-packages/contourpy
+      Lib/site-packages/contourpy-1.3.3.dist-info
+      Lib/site-packages/Crypto
+      Lib/site-packages/cryptography
+      Lib/site-packages/cryptography-46.0.7.dist-info
+      Lib/site-packages/cycler
+      Lib/site-packages/cycler-0.12.1.dist-info
+      Lib/site-packages/databricks
+      Lib/site-packages/databricks_sdk-0.118.0.dist-info
+      Lib/site-packages/dateutil
+      Lib/site-packages/diastatic_malt-2.15.3.dist-info
+      Lib/site-packages/doc
+      Lib/site-packages/docker
+      Lib/site-packages/docker-7.1.0.dist-info
+      Lib/site-packages/dotenv
+      Lib/site-packages/fastapi
+      Lib/site-packages/fastapi-0.137.2.dist-info
+      Lib/site-packages/filelock
+      Lib/site-packages/filelock-3.29.4.dist-info
+      Lib/site-packages/flask
+      Lib/site-packages/flask-3.1.3.dist-info
+      Lib/site-packages/flask_cors
+      Lib/site-packages/flask_cors-6.0.5.dist-info
+      Lib/site-packages/flwr
+      Lib/site-packages/flwr-1.31.0.dist-info
+      Lib/site-packages/fontTools
+      Lib/site-packages/fonttools-4.63.0.dist-info
+      Lib/site-packages/frozenlist
+      Lib/site-packages/frozenlist-1.8.0.dist-info
+      Lib/site-packages/fsspec
+      Lib/site-packages/fsspec-2026.6.0.dist-info
+      Lib/site-packages/functorch
+
+--- CSV/TSV/JSON/TXT/YAML files (first 20, with first 3 lines) ---
+  >>> venv\Lib\site-packages\pywin32.version.txt  (0.0 KB)
+    312
+
+  >>> venv\Lib\site-packages\adodbapi\license.txt  (26.3 KB)
+    		  GNU LESSER GENERAL PUBLIC LICENSE
+    		       Version 2.1, February 1999
+    
+
+  >>> venv\Lib\site-packages\adodbapi\readme.txt  (4.7 KB)
+    Project
+    -------
+    adodbapi
+
+  >>> venv\Lib\site-packages\aiohttp-3.14.1.dist-info\top_level.txt  (0.0 KB)
+    aiohttp
+
+  >>> venv\Lib\site-packages\aiosignal-1.4.0.dist-info\top_level.txt  (0.0 KB)
+    aiosignal
+
+  >>> venv\Lib\site-packages\alembic-1.18.4.dist-info\entry_points.txt  (0.0 KB)
+    [console_scripts]
+    alembic = alembic.config:main
+
+  >>> venv\Lib\site-packages\alembic-1.18.4.dist-info\top_level.txt  (0.0 KB)
+    alembic
+
+  >>> venv\Lib\site-packages\annotated_doc-0.0.4.dist-info\entry_points.txt  (0.0 KB)
+    [console_scripts]
+    
+    [gui_scripts]
+
+  >>> venv\Lib\site-packages\antlr4_python3_runtime-4.9.3.dist-info\top_level.txt  (0.0 KB)
+    antlr4
+
+  >>> venv\Lib\site-packages\anyio-4.14.0.dist-info\entry_points.txt  (0.0 KB)
+    [pytest11]
+    anyio = anyio.pytest_plugin
+
+  >>> venv\Lib\site-packages\anyio-4.14.0.dist-info\top_level.txt  (0.0 KB)
+    anyio
+
+  >>> venv\Lib\site-packages\appdirs-1.4.4.dist-info\LICENSE.txt  (1.1 KB)
+    # This is the MIT license
+    
+    Copyright (c) 2010 ActiveState Software Inc.
+
+  >>> venv\Lib\site-packages\appdirs-1.4.4.dist-info\top_level.txt  (0.0 KB)
+    appdirs
+
+  >>> venv\Lib\site-packages\blinker-1.9.0.dist-info\LICENSE.txt  (1.0 KB)
+    Copyright 2010 Jason Kirtland
+    
+    Permission is hereby granted, free of charge, to any person obtaining a
+
+  >>> venv\Lib\site-packages\cachetools-7.1.4.dist-info\top_level.txt  (0.0 KB)
+    cachetools
+
+  >>> venv\Lib\site-packages\certifi-2026.6.17.dist-info\top_level.txt  (0.0 KB)
+    certifi
+
+  >>> venv\Lib\site-packages\cffi-2.0.0.dist-info\entry_points.txt  (0.1 KB)
+    [distutils.setup_keywords]
+    cffi_modules = cffi.setuptools_ext:cffi_modules
+
+  >>> venv\Lib\site-packages\cffi-2.0.0.dist-info\top_level.txt  (0.0 KB)
+    _cffi_backend
+    cffi
+
+  >>> venv\Lib\site-packages\charset_normalizer-3.4.7.dist-info\entry_points.txt  (0.1 KB)
+    [console_scripts]
+    normalizer = charset_normalizer.cli:cli_detect
+
+  >>> venv\Lib\site-packages\charset_normalizer-3.4.7.dist-info\top_level.txt  (0.0 KB)
+    81d243bd2c585b0f4821__mypyc
+    charset_normalizer
+
+--- Sample sub-* folder (first one found) ---
+  (no sub-* directories)
+
+================================================================================
+PROCESSED NPZ FILES
+================================================================================
+  (no processed/ folder yet)

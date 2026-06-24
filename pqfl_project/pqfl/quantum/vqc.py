@@ -46,6 +46,8 @@ class VQCConfig:
         dropout: Dropout probability.
         use_dual_register: Use dual hemispheric register architecture.
         circuit_type: "rqfm_vqc" or "qcnn".
+        n_classes: Number of output classes (2=binary SZ/HC, 3=SZ/HC/Other,
+                   4=SZ/HC/BP/Other). Defaults to 2 for backward compatibility.
     """
     n_qubits: int = 12
     n_base_layers: int = 3
@@ -60,6 +62,7 @@ class VQCConfig:
     dropout: float = 0.3
     use_dual_register: bool = False
     circuit_type: str = "rqfm_vqc"
+    n_classes: int = 2  # NEW: supports 2 (binary), 3 (SZ/HC/Other), 4 (SZ/HC/BP/Other)
 
 
 class ClassicalEncoder(nn.Module):
@@ -259,6 +262,7 @@ class HybridVQC(nn.Module):
             fdt_dim=config.fdt_features,
             hidden_dims=config.classifier_hidden_dims,
             dropout=config.dropout,
+            n_classes=config.n_classes,  # NEW: configurable output classes
         )
         
         logger.info(
@@ -279,7 +283,7 @@ class HybridVQC(nn.Module):
             fdt_features: Optional FDT features, shape (batch_size, fdt_dim).
         
         Returns:
-            Classification logits, shape (batch_size, 2).
+            Classification logits, shape (batch_size, n_classes).
         """
         # Classical encoder → quantum-ready features
         quantum_input = self.encoder(x)

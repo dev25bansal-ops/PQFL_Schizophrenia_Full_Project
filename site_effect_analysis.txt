@@ -1,0 +1,33 @@
+Site-Effect Analysis - PQFL Phase 2 4-class
+==============================================================================
+
+Config: {'n_qubits': 8, 'n_components': 150, 'learning_rate': 0.0005, 'dropout': 0.3, 'n_base_layers': 2, 'label_smoothing': 0.1, 'batch_size': 16}
+n_samples: 1047
+Label distribution: {'1': 288, '0': 423, '3': 225, '2': 111}
+
+Per-fold Other sensitivity:
+  Fold 1: Other sens = 1.0000
+  Fold 2: Other sens = 0.9565
+  Fold 3: Other sens = 1.0000
+  Fold 4: Other sens = 0.9091
+  Fold 5: Other sens = 1.0000
+
+Aggregate Other sensitivity: 0.9731
+Aggregate Other specificity: 0.8750
+
+Aggregate confusion matrix:
+  True SZ: [215, 76, 12, 120]
+  True HC: [18, 182, 84, 4]
+  True Other: [0, 3, 108, 0]
+  True BP: [72, 15, 21, 117]
+
+Site-effect leak hypothesis:
+  - All 111 Other subjects from Transdiagnostic site
+  - Other recall: 108/111 = 97.3%
+  - Other precision: 108/225 = 48.0%
+  - Cannot distinguish genuine signal vs site-effect without per-subject predictions
+
+Recommended follow-up:
+  1. Site-confound regression (30 min impl + 90 min retrain)
+  2. Leave-one-site-out CV (4 folds × 90 min = 6 hours)
+  3. Add Depression dataset to diversify Other across sites

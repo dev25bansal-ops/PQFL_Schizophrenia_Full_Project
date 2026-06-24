@@ -1,0 +1,327 @@
+{
+  "baselines": {
+    "TangentSVM_CV": {
+      "ba_mean": 0.51,
+      "ba_std": 0.020000000000000018,
+      "auc_mean": 0.6976,
+      "auc_std": 0.061624454020569895
+    },
+    "RiemannianLR_CV": {
+      "ba_mean": 0.5890000000000001,
+      "ba_std": 0.07576902034766218,
+      "auc_mean": 0.6680333333333334,
+      "auc_std": 0.04326063132019947
+    }
+  },
+  "results": [
+    {
+      "config_id": 0,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6746666666666666,
+        "ba_std": 0.047541210193543286,
+        "auc_mean": 0.6718666666666666,
+        "auc_std": 0.055152455369941025,
+        "sens_mean": 0.66,
+        "sens_std": 0.1356465996625054,
+        "spec_mean": 0.6893333333333334,
+        "spec_std": 0.10997272389097218,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 444.45037841796875
+    },
+    {
+      "config_id": 1,
+      "config": {
+        "n_qubits": 4,
+        "n_components": 50,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6488333333333334,
+        "ba_std": 0.058945832007963994,
+        "auc_mean": 0.6309666666666667,
+        "auc_std": 0.06099238568142019,
+        "sens_mean": 0.6000000000000001,
+        "sens_std": 0.24494897427831783,
+        "spec_mean": 0.6976666666666668,
+        "spec_std": 0.15715738749560723,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 241.83467817306519
+    },
+    {
+      "config_id": 2,
+      "config": {
+        "n_qubits": 8,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6605000000000001,
+        "ba_std": 0.06145820621455779,
+        "auc_mean": 0.6658999999999999,
+        "auc_std": 0.07737496006102003,
+        "sens_mean": 0.6,
+        "sens_std": 0.1414213562373095,
+        "spec_mean": 0.721,
+        "spec_std": 0.04873511168665885,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 410.9557135105133
+    },
+    {
+      "config_id": 3,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0001,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.5951666666666666,
+        "ba_std": 0.06171709649683788,
+        "auc_mean": 0.6005,
+        "auc_std": 0.06935127972863948,
+        "sens_mean": 0.74,
+        "sens_std": 0.24166091947189142,
+        "spec_mean": 0.45033333333333336,
+        "spec_std": 0.21275024480988658,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 201.45428919792175
+    },
+    {
+      "config_id": 4,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.001,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.671,
+        "ba_std": 0.05139012010537088,
+        "auc_mean": 0.6688333333333333,
+        "auc_std": 0.06571622495413308,
+        "sens_mean": 0.7799999999999999,
+        "sens_std": 0.11661903789690603,
+        "spec_mean": 0.562,
+        "spec_std": 0.20530573407590066,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 231.30650424957275
+    },
+    {
+      "config_id": 5,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.3,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6836666666666666,
+        "ba_std": 0.051179422948420705,
+        "auc_mean": 0.6671666666666667,
+        "auc_std": 0.05421315953407134,
+        "sens_mean": 0.68,
+        "sens_std": 0.09797958971132716,
+        "spec_mean": 0.6873333333333334,
+        "spec_std": 0.09891410415102589,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 361.1231005191803
+    },
+    {
+      "config_id": 6,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.7,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6926666666666665,
+        "ba_std": 0.0962439031258027,
+        "auc_mean": 0.6126666666666667,
+        "auc_std": 0.1293506861211026,
+        "sens_mean": 0.5399999999999999,
+        "sens_std": 0.2154065922853802,
+        "spec_mean": 0.8453333333333333,
+        "spec_std": 0.10775692810931256,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 272.22025418281555
+    },
+    {
+      "config_id": 7,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 1,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6763333333333333,
+        "ba_std": 0.041701985031357386,
+        "auc_mean": 0.6524333333333333,
+        "auc_std": 0.055922128396945395,
+        "sens_mean": 0.6399999999999999,
+        "sens_std": 0.16248076809271922,
+        "spec_mean": 0.7126666666666667,
+        "spec_std": 0.15885912697173626,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 136.43941974639893
+    },
+    {
+      "config_id": 8,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 3,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6476666666666666,
+        "ba_std": 0.05377266963802336,
+        "auc_mean": 0.6571333333333333,
+        "auc_std": 0.07628698738608339,
+        "sens_mean": 0.64,
+        "sens_std": 0.1356465996625054,
+        "spec_mean": 0.6553333333333333,
+        "spec_std": 0.15119303334920342,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 304.1800730228424
+    },
+    {
+      "config_id": 9,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.0,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.666,
+        "ba_std": 0.041242507737096236,
+        "auc_mean": 0.6815666666666667,
+        "auc_std": 0.09617296917533534,
+        "sens_mean": 0.76,
+        "sens_std": 0.10198039027185572,
+        "spec_mean": 0.572,
+        "spec_std": 0.13678612665195417,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 209.4026882648468
+    },
+    {
+      "config_id": 10,
+      "config": {
+        "n_qubits": 6,
+        "n_components": 71,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 16
+      },
+      "metrics": {
+        "ba_mean": 0.7128333333333333,
+        "ba_std": 0.06484939818105058,
+        "auc_mean": 0.7120666666666666,
+        "auc_std": 0.047668601359338786,
+        "sens_mean": 0.78,
+        "sens_std": 0.16000000000000003,
+        "spec_mean": 0.6456666666666667,
+        "spec_std": 0.20508968228016194,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 296.84698963165283
+    },
+    {
+      "config_id": 11,
+      "config": {
+        "n_qubits": 4,
+        "n_components": 32,
+        "learning_rate": 0.0005,
+        "dropout": 0.5,
+        "n_base_layers": 2,
+        "label_smoothing": 0.1,
+        "batch_size": 32
+      },
+      "metrics": {
+        "ba_mean": 0.6571666666666667,
+        "ba_std": 0.016696639715157568,
+        "auc_mean": 0.6421666666666667,
+        "auc_std": 0.05234829934624851,
+        "sens_mean": 0.6199999999999999,
+        "sens_std": 0.2135415650406262,
+        "spec_mean": 0.6943333333333334,
+        "spec_std": 0.24253201392347726,
+        "n_folds": 5
+      },
+      "elapsed_seconds": 149.6385977268219
+    }
+  ],
+  "best_config": {
+    "n_qubits": 6,
+    "n_components": 71,
+    "learning_rate": 0.0005,
+    "dropout": 0.5,
+    "n_base_layers": 2,
+    "label_smoothing": 0.1,
+    "batch_size": 16
+  },
+  "best_metrics": {
+    "ba_mean": 0.7128333333333333,
+    "ba_std": 0.06484939818105058,
+    "auc_mean": 0.7120666666666666,
+    "auc_std": 0.047668601359338786,
+    "sens_mean": 0.78,
+    "sens_std": 0.16000000000000003,
+    "spec_mean": 0.6456666666666667,
+    "spec_std": 0.20508968228016194,
+    "n_folds": 5
+  },
+  "n_configs": 12
+}

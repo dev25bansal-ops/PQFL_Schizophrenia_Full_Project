@@ -1,45 +1,42 @@
-# Python
+# Data files (DO NOT COMMIT - too large, contains patient data)
+data/
+*.npz
+*.nii
+*.nii.gz
+*.h5
+*.mat
+*.npy
+manifest*.csv
+
+# Python caches
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
 *.egg-info/
-dist/
-build/
-*.egg
-.python-version
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
+nilearn_cache/
+*.cache
 
-# Neuroimaging data — DO NOT COMMIT (too large for git, use DVC or external storage)
-pqfl_project/data/
-pqfl_project/nilearn_cache/
-
-# Results, figures, analysis outputs (auto-generated, timestamped)
-pqfl_project/results/
-pqfl_project/figures/
-pqfl_project/analysis_results/
-pqfl_project/cv_results/
-pqfl_project/final_results/
-pqfl_project/sweep_results/
-pqfl_project/experiments/
-
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment
-.env
-.env.local
+# Virtual environments
 venv/
 .venv/
 env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Large results (keep JSON results, exclude large images)
+*.bak
+results/*/training_curves.png
+results/*/confusion_matrix.png
+
+# Logs
+*.log
+preprocess_new_datasets.log
+
+# Zip files
+*.zip
+*.tar.gz
+*.7z

@@ -1,0 +1,45 @@
+[
+  {
+    "site_name": "COBRE",
+    "site_id": 4,
+    "n_subjects": 146,
+    "label_distribution": {
+      "1": 74,
+      "0": 72
+    },
+    "npz_path": "data\\processed\\COBRE_processed.npz"
+  },
+  {
+    "site_name": "KagglePsychosis",
+    "site_id": 20,
+    "n_subjects": 471,
+    "label_distribution": {
+      "3": 183,
+      "0": 288
+    },
+    "npz_path": "data\\processed\\KagglePsychosis_processed.npz"
+  },
+  {
+    "site_name": "LA5c",
+    "site_id": 3,
+    "n_subjects": 189,
+    "label_distribution": {
+      "1": 122,
+      "0": 50,
+      "3": 17
+    },
+    "npz_path": "data\\processed\\LA5c_processed.npz"
+  },
+  {
+    "site_name": "Transdiagnostic",
+    "site_id": 19,
+    "n_subjects": 241,
+    "label_distribution": {
+      "3": 25,
+      "2": 111,
+      "1": 92,
+      "0": 13
+    },
+    "npz_path": "data\\processed\\Transdiagnostic_processed.npz"
+  }
+]

@@ -1,32 +1,34 @@
 #!/bin/bash
 # =============================================================================
-# PQFL Schizophrenia Dataset Download Script
+# PQFL Schizophrenia Dataset Download Script (ALL datasets, LA5c excluded)
 # =============================================================================
 #
-# This script downloads all publicly accessible schizophrenia fMRI datasets
+# This script downloads ALL publicly accessible schizophrenia fMRI datasets
 # for the PQFL federated quantum learning project.
+# LA5c is EXCLUDED since it is already downloaded and processed.
 #
-# Datasets downloaded:
-#   1. LA5c/CNP   - OpenNeuro ds000030 (OPEN, no registration)
-#   2. TCP 2025    - OpenNeuro ds005237 (OPEN, no registration)
+# Datasets auto-downloaded (OPEN ACCESS):
+#   1. TCP 2025    - OpenNeuro ds005237 (40 SZ, 93 HC)  ~50 GB
+#   2. SPINS       - OpenNeuro ds003011 (94 SZ, 94 HC)  ~80 GB
 #
-# Datasets requiring separate application:
-#   3. COBRE       - COINS Data Exchange (free account, ~1 day approval)
-#   4. SRPBS FC    - BICR ATR Japan (application form, ~days)
-#   5. MCIC        - COINS Data Exchange (DUA, ~weeks)
-#   6. BSNIP-2     - NIMH Data Archive (IRB + DUC, ~weeks-months)
-#   7. FBIRN       - Contact PI directly (months)
+# Datasets requiring registration (instructions shown):
+#   3. COBRE       - COINS Data Exchange (72 SZ, 74 HC)  ~20 GB
+#   4. SRPBS FC    - BICR ATR Japan (146 SZ, 800 HC)     175 MB!
+#
+# Datasets requiring DUA/IRB (instructions shown):
+#   5. MCIC        - COINS DUA (146 SZ, 160 HC)
+#   6. BSNIP-2     - NIMH Data Archive (150 SZ, 223 HC)
+#   7. FBIRN       - Contact PI (176 SZ, 186 HC)
 #
 # Prerequisites:
-#   - AWS CLI:     pip install awscli  (or: conda install -c conda-forge awscli)
-#   - DataLad:     pip install datalad  (alternative method)
-#   - Disk space:  ~30 GB for LA5c + TCP (resting-state only)
+#   - AWS CLI:     pip install awscli
+#   - Disk space:  ~130 GB for TCP + SPINS (resting-state only)
 #
 # Usage:
 #   chmod +x scripts/download_datasets.sh
 #   ./scripts/download_datasets.sh --data-dir ./data
-#   ./scripts/download_datasets.sh --data-dir ./data --site LA5c
-#   ./scripts/download_datasets.sh --data-dir ./data --rest-only   # smaller downloads
+#   ./scripts/download_datasets.sh --data-dir ./data --site TCP
+#   ./scripts/download_datasets.sh --data-dir ./data --rest-only
 # =============================================================================
 
 set -euo pipefail
@@ -61,13 +63,13 @@ while [[ $# -gt 0 ]]; do
             echo ""
             echo "Options:"
             echo "  --data-dir DIR    Base directory for downloads (default: ./data)"
-            echo "  --site SITE       Download only one site: LA5c, TCP, COBRE, SRPBS"
+            echo "  --site SITE       Download only one site: TCP, SPINS, COBRE, SRPBS"
             echo "  --rest-only       Download only resting-state fMRI (saves bandwidth)"
             echo "  --dry-run         Show commands without executing"
             echo "  --help            Show this help"
             echo ""
-            echo "Available open-access sites: LA5c, TCP"
-            echo "Restricted-access sites (manual): COBRE, SRPBS, MCIC, BSNIP2, FBIRN"
+            echo "NOTE: LA5c is EXCLUDED (already downloaded)."
+            echo "  To re-download LA5c: python scripts/download_datasets.py --site LA5c"
             exit 0
             ;;
         *)
@@ -88,67 +90,12 @@ run_cmd() {
 check_aws_cli() {
     if ! command -v aws &> /dev/null; then
         echo "ERROR: AWS CLI not found. Install with: pip install awscli"
-        echo "  Or use DataLad: pip install datalad"
         exit 1
     fi
 }
 
-check_datalad() {
-    if ! command -v datalad &> /dev/null; then
-        echo "WARNING: DataLad not found. Install with: pip install datalad"
-        return 1
-    fi
-    return 0
-}
-
 # =====================================================================
-# SITE 1: LA5c/CNP — OpenNeuro ds000030
-# =====================================================================
-download_la5c() {
-    echo ""
-    echo "============================================================"
-    echo "  DOWNLOADING: LA5c/CNP (OpenNeuro ds000030)"
-    echo "  272 subjects: 50 SCHZ + 127 CONTROL + 49 BIPOLAR + 43 ADHD"
-    echo "  Resting-state fMRI: TR=2s, ~156 volumes per run"
-    echo "  Diagnosis in participants.tsv: 'diagnosis' column"
-    echo "============================================================"
-    echo ""
-
-    local OUTDIR="${DATA_DIR}/LA5c"
-    mkdir -p "$OUTDIR"
-
-    check_aws_cli
-
-    if [ "$REST_ONLY" = true ]; then
-        echo "Downloading resting-state BOLD + anatomical + participants only..."
-        echo "This saves ~80% bandwidth vs full dataset."
-        run_cmd aws s3 sync --no-sign-request \
-            --exclude "*" \
-            --include "participants.tsv" \
-            --include "dataset_description.json" \
-            --include "*/anat/*" \
-            --include "*/task-rest_bold.nii.gz" \
-            --include "*/task-rest_bold.json" \
-            --include "*/task-rest_physio.tsv.gz" \
-            --include "*/task-rest_physio.json" \
-            s3://openneuro/ds000030/ds000030_R1.0.5/uncompressed/ \
-            "$OUTDIR/"
-    else
-        echo "Downloading full LA5c dataset..."
-        run_cmd aws s3 sync --no-sign-request \
-            s3://openneuro/ds000030/ds000030_R1.0.5/uncompressed/ \
-            "$OUTDIR/"
-    fi
-
-    echo ""
-    echo "LA5c download complete. Files in: $OUTDIR"
-    echo "Verify: Check $OUTDIR/participants.tsv has 'diagnosis' column"
-    echo "  SZ subjects:   diagnosis == 'SCHZ'"
-    echo "  HC subjects:   diagnosis == 'CONTROL'"
-}
-
-# =====================================================================
-# SITE 2: TCP 2025 (Transdiagnostic Connectome Project) — ds005237
+# SITE 1: TCP 2025 (Transdiagnostic Connectome Project) — ds005237
 # =====================================================================
 download_tcp() {
     echo ""
@@ -176,6 +123,7 @@ download_tcp() {
             --include "*/anat/*" \
             --include "*/task-rest_run-*_bold.nii.gz" \
             --include "*/task-rest_run-*_bold.json" \
+            --include "*/task-rest_run-*_desc-confounds_timeseries.tsv" \
             s3://openneuro.org/ds005237 \
             "$OUTDIR/"
     else
@@ -187,9 +135,49 @@ download_tcp() {
 
     echo ""
     echo "TCP download complete. Files in: $OUTDIR"
-    echo "Verify: Check $OUTDIR/participants.tsv and $OUTDIR/phenotype/demos.tsv"
-    echo "  Filter by SCID diagnosis to isolate SZ subjects"
-    echo "  PANSS scores also available for symptom severity"
+}
+
+# =====================================================================
+# SITE 2: SPINS — ds003011
+# =====================================================================
+download_spins() {
+    echo ""
+    echo "============================================================"
+    echo "  DOWNLOADING: SPINS (OpenNeuro ds003011)"
+    echo "  Social Processes Initiative in Neurobiology of the"
+    echo "  Schizophrenia(s) — 3 acquisition sites"
+    echo "  ~188 subjects: 94 SZ + 94 HC (+ schizoaffective, bipolar)"
+    echo "  HCP-quality: TR=800ms, ~750 volumes per run"
+    echo "  Diagnosis in participants.tsv: 'diagnosis' column"
+    echo "============================================================"
+    echo ""
+
+    local OUTDIR="${DATA_DIR}/SPINS"
+    mkdir -p "$OUTDIR"
+
+    check_aws_cli
+
+    if [ "$REST_ONLY" = true ]; then
+        echo "Downloading resting-state BOLD + anatomical + participants only..."
+        run_cmd aws s3 sync --no-sign-request \
+            --exclude "*" \
+            --include "participants.tsv" \
+            --include "dataset_description.json" \
+            --include "*/anat/*" \
+            --include "*/task-rest_bold.nii.gz" \
+            --include "*/task-rest_bold.json" \
+            --include "*/task-rest_desc-confounds_timeseries.tsv" \
+            s3://openneuro.org/ds003011 \
+            "$OUTDIR/"
+    else
+        echo "Downloading full SPINS dataset (WARNING: very large, ~80+ GB)..."
+        run_cmd aws s3 sync --no-sign-request \
+            s3://openneuro.org/ds003011 \
+            "$OUTDIR/"
+    fi
+
+    echo ""
+    echo "SPINS download complete. Files in: $OUTDIR"
 }
 
 # =====================================================================
@@ -213,18 +201,10 @@ download_cobre() {
     echo "  5. Data available for download within ~1 business day"
     echo ""
     echo "  Dataset: 72 SZ + 74 HC = 146 total"
-    echo "  Resting-state fMRI: 150 volumes, TR=2s"
-    echo "  Diagnosis in: COBRE_phenotypic_data.csv"
-    echo "    'Subject Type' column: 'Patient' (SZ) or 'Control' (HC)"
+    echo "  Diagnosis: COBRE_phenotypic_data.csv 'Subject Type' column"
+    echo "    'Patient' (SZ) or 'Control' (HC)"
     echo ""
     echo "  After downloading, place files in: ${DATA_DIR}/COBRE/"
-    echo "  Expected structure:"
-    echo "    ${DATA_DIR}/COBRE/"
-    echo "    ├── participants.tsv (or COBRE_phenotypic_data.csv)"
-    echo "    ├── sub-01/"
-    echo "    │   ├── func/sub-01_task-rest_bold.nii.gz"
-    echo "    │   └── anat/sub-01_T1w.nii.gz"
-    echo "    └── ..."
     echo "============================================================"
 }
 
@@ -242,80 +222,45 @@ download_srpbs() {
     echo "  Size: Only 175.6 MB (vs 89.8 GB for raw fMRI)"
     echo "  Contains: Precomputed FC matrices + diagnosis labels"
     echo ""
-    echo "  ALTERNATIVE: Raw fMRI (SRPBS-1600)"
-    echo "  URL: https://bicr-resource.atr.jp/srpbs1600"
-    echo "  Size: 89.8 GB"
-    echo ""
     echo "  ACCESS STEPS:"
     echo "  1. Go to: https://bicr-resource.atr.jp/srpbsfc"
-    echo "  2. Download the 'Application Form for Data Usage' (PDF/Word)"
-    echo "  3. Fill in and sign the form"
-    echo "  4. Upload with registration"
-    echo "  5. Wait for email approval with S3 download link"
+    echo "  2. Download and fill 'Application Form for Data Usage'"
+    echo "  3. Upload signed form + register"
+    echo "  4. Wait for email approval with S3 download link"
     echo ""
-    echo "  Dataset: ~146 SZ + ~1,421 HC across 12 sites"
-    echo "  FC data format: .mat files with connectivity matrices"
-    echo "  Diagnosis: participants.tsv or SUBINFO_*.tsv per site"
-    echo "    SZ labels: 'SCZ' or 'SZ'"
-    echo "    HC labels: 'HC' or 'Control'"
+    echo "  Dataset: ~146 SZ + ~800 HC across 12 sites"
+    echo "  FC format: .mat files with connectivity matrices"
     echo ""
     echo "  After downloading, place files in: ${DATA_DIR}/SRPBS/"
-    echo "  Expected structure (FC data):"
-    echo "    ${DATA_DIR}/SRPBS/"
-    echo "    ├── participants.tsv"
-    echo "    ├── fc_matrices.npz (or .mat files)"
-    echo "    ├── SUBINFO_*.tsv"
-    echo "    └── ..."
     echo "============================================================"
 }
 
 # =====================================================================
-# SITE 5: MCIC — COINS Data Exchange (MANUAL)
-# =====================================================================
-download_mcic() {
-    echo ""
-    echo "============================================================"
-    echo "  MCIC — MANUAL APPLICATION REQUIRED"
-    echo "============================================================"
-    echo ""
-    echo "  ACCESS STEPS:"
-    echo "  1. Create account at: https://coins.trendscenter.org/"
-    echo "  2. Search for 'MCICShare' study"
-    echo "  3. Select scan series: resting-state fMRI + structural"
-    echo "  4. Accept MCIC Data Use Agreement"
-    echo "  5. Wait for download approval (may take 1+ month)"
-    echo ""
-    echo "  Dataset: 146 SZ + 160 HC = 306 total (3 sites released)"
-    echo "  Resting-state fMRI + task fMRI + structural + DWI"
-    echo "  SCID-confirmed diagnosis"
-    echo ""
-    echo "  After downloading, place files in: ${DATA_DIR}/MCIC/"
-    echo "============================================================"
-}
-
-# =====================================================================
-# SITES 6-7: BSNIP-2 & FBIRN (HIGHLY RESTRICTED)
+# SITES 5-7: MCIC, BSNIP-2 & FBIRN (HIGHLY RESTRICTED)
 # =====================================================================
 download_restricted() {
     echo ""
     echo "============================================================"
-    echo "  BSNIP-2 & FBIRN — RESTRICTED ACCESS (WEEKS-MONTHS)"
+    echo "  MCIC, BSNIP-2 & FBIRN — RESTRICTED ACCESS"
     echo "============================================================"
+    echo ""
+    echo "  MCIC (COINS DUA, ~weeks approval):"
+    echo "    1. Register at: https://coins.trendscenter.org/"
+    echo "    2. Search for 'MCICShare' study, accept DUA"
+    echo "    Dataset: 146 SZ + 160 HC"
     echo ""
     echo "  BSNIP-2 (NIMH Data Archive, Collection 2165):"
     echo "    1. Create NDA account: https://nda.nih.gov"
-    echo "    2. Submit Data Use Certification (requires IRB documentation)"
-    echo "    3. Wait for Data Access Committee approval"
-    echo "    4. Download: pip install nda-tools && downloadcmd -d 2165"
+    echo "    2. Submit Data Use Certification (requires IRB)"
+    echo "    3. Download: pip install nda-tools && downloadcmd -d 2165"
     echo "    Dataset: ~150 SZ + ~223 HC"
     echo ""
     echo "  FBIRN (Contact PI directly):"
-    echo "    Contact: Dr. Theo G.M. van Erp"
-    echo "    Email: tvanerp@hs.uci.edu"
-    echo "    Must facilitate interaction with IRB + sign DUA"
-    echo "    Dataset: Phase III has 176 SZ + 186 HC with rest fMRI"
+    echo "    Contact: Dr. Theo G.M. van Erp (tvanerp@hs.uci.edu)"
+    echo "    Dataset: Phase III: 176 SZ + 186 HC"
     echo ""
     echo "  After downloading, place files in:"
+    echo "    ${DATA_DIR}/MCIC/"
     echo "    ${DATA_DIR}/BSNIP2/"
     echo "    ${DATA_DIR}/FBIRN/"
     echo "============================================================"
@@ -327,16 +272,17 @@ download_restricted() {
 mkdir -p "$DATA_DIR"
 
 echo "============================================================"
-echo "  PQFL Schizophrenia Dataset Downloader"
+echo "  PQFL Schizophrenia Multi-Dataset Downloader"
+echo "  (LA5c EXCLUDED — already downloaded)"
 echo "  Data directory: $DATA_DIR"
 echo "============================================================"
 
 case "$SITE" in
-    LA5c)
-        download_la5c
-        ;;
-    TCP)
+    TCP|TCP2025)
         download_tcp
+        ;;
+    SPINS)
+        download_spins
         ;;
     COBRE)
         download_cobre
@@ -344,21 +290,23 @@ case "$SITE" in
     SRPBS)
         download_srpbs
         ;;
-    MCIC)
-        download_mcic
-        ;;
     "")
         # Download all open-access sites + show instructions for restricted
-        download_la5c
         download_tcp
+        download_spins
         download_cobre
         download_srpbs
-        download_mcic
         download_restricted
+        ;;
+    LA5c)
+        echo ""
+        echo "  NOTE: LA5c is already downloaded and processed."
+        echo "  To re-download, use the original script:"
+        echo "    python scripts/download_datasets.py --site LA5c"
         ;;
     *)
         echo "Unknown site: $SITE"
-        echo "Available: LA5c, TCP, COBRE, SRPBS, MCIC"
+        echo "Available: TCP, SPINS, COBRE, SRPBS (LA5c excluded)"
         exit 1
         ;;
 esac
@@ -369,8 +317,7 @@ echo "  DOWNLOAD COMPLETE (or instructions shown)"
 echo "============================================================"
 echo ""
 echo "Next steps:"
-echo "  1. Verify downloads: check participants.tsv in each site dir"
-echo "  2. Run preprocessing:"
-echo "     python scripts/preprocess_real_data.py --data_dir $DATA_DIR --compute_fdt"
-echo "  3. Train model:"
-echo "     python experiments/train_federated.py --data_dir $DATA_DIR/processed --n_rois 100"
+echo "  1. Check status: python scripts/check_dataset_status.py --data_dir $DATA_DIR"
+echo "  2. Preprocess:   python scripts/preprocess_all_datasets.py --data_dir $DATA_DIR --compute_fdt"
+echo "  3. Integrate:    python scripts/integrate_datasets.py --data_dir $DATA_DIR/processed"
+echo "  4. Train:        python experiments/final_training.py --data_dir $DATA_DIR/processed"

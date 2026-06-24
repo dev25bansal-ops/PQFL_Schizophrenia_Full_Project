@@ -58,6 +58,7 @@ class PQFLClient:
         gradient_clip: float = 1.0,
         label_smoothing: float = 0.0,
         device: str = "cpu",
+        class_weights: Optional[torch.Tensor] = None,
     ):
         self.model = model
         self.train_loader = train_loader
@@ -70,14 +71,22 @@ class PQFLClient:
         self.fedprox_mu = fedprox_mu
         self.gradient_clip = gradient_clip
         self.label_smoothing = label_smoothing
-        self.device = torch.device(device)
+        self.device = torch.device(device) if isinstance(device, str) else device
         
         # Move model to device
         self.model = self.model.to(self.device)
         
-        # Loss function — will be updated with class weights after data is available
-        self.criterion = nn.CrossEntropyLoss(label_smoothing=label_smoothing)
-        self._class_weights_set = False
+        # Loss function — supports both binary (BCE) and multi-class (CE) via class_weights
+        if class_weights is not None:
+            self.criterion = nn.CrossEntropyLoss(
+                weight=class_weights.to(self.device),
+                label_smoothing=label_smoothing,
+            )
+            self._class_weights_set = True
+            logger.info(f"Site {site_name}: using provided class weights: {class_weights.tolist()}")
+        else:
+            self.criterion = nn.CrossEntropyLoss(label_smoothing=label_smoothing)
+            self._class_weights_set = False
         
         # Tracking
         self._history = {
@@ -280,6 +289,7 @@ class PQFLClient:
         all_probs = []
         total_loss = 0
         n_batches = 0
+        n_classes = 2  # default; updated from first batch logits
         
         with torch.no_grad():
             for batch in self.val_loader:
@@ -299,19 +309,32 @@ class PQFLClient:
                 total_loss += loss.item()
                 n_batches += 1
                 
+                # Track n_classes from logits shape
+                if logits.dim() >= 2 and logits.shape[1] > 1:
+                    n_classes = logits.shape[1]
+                
                 probs = torch.softmax(logits, dim=1)
                 preds = logits.argmax(dim=1)
                 all_preds.extend(preds.cpu().numpy())
                 all_labels.extend(y.cpu().numpy())
-                all_probs.extend(probs[:, 1].cpu().numpy())  # P(SZ)
+                # Save full probability matrix (supports both binary and multi-class)
+                all_probs.append(probs.cpu().numpy())
         
         all_preds = np.array(all_preds)
         all_labels = np.array(all_labels)
-        all_probs = np.array(all_probs) if all_probs else None
+        # Concatenate per-batch prob matrices → (n_samples, n_classes)
+        if all_probs:
+            all_probs = np.concatenate(all_probs, axis=0)
+            # For backward compatibility with binary case: if shape is (N, 2),
+            # also expose just the positive-class column via y_prob[:, 1]
+        else:
+            all_probs = None
         
         # Compute metrics with probabilities for AUC
         from ..evaluation.metrics import compute_classification_metrics
-        metrics = compute_classification_metrics(all_labels, all_preds, y_prob=all_probs)
+        metrics = compute_classification_metrics(
+            all_labels, all_preds, y_prob=all_probs, n_classes=n_classes,
+        )
         metrics["val_loss"] = total_loss / max(n_batches, 1)
         
         self._history["val_loss"].append(metrics["val_loss"])
